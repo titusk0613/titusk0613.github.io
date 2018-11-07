@@ -45,6 +45,39 @@ p {
 a{ 
     color: #45A29E;
 }
-a href {
-    text-align: right;
+nav{
+    text-align: center;
+}
+
+a:link,
+a:visited{
+    text-decoration: none;
+    color:#45A29E;
+}
+a:hover{
+    color: #c5c6c7;
+}
+section{
+    text-align: center;
+}
+h2{
+    text-align: center;
+}
+h2{
+    color: #66FCF1;
+}
+header{
+    font-size: 45px;
+}
+header{
+    font-size: 45px;
+}
+h6{
+    color: #45A29E;
+}
+h6{
+    font-size: 25px;
+}
+h6{
+    line-height: 0.1;
 }
