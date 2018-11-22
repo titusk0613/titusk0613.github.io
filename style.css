@@ -81,3 +81,16 @@ h6{
 h6{
     line-height: 0.1;
 }
+footer{
+    border-style: inset;
+}
+footer{
+    border-width: 10px;
+    border-color: #45A29E;
+    padding-bottom: 1px;
+    margin-top: 75px;
+}
+#myCanvas{
+    border-style: solid;
+    background-color: white;
+}
