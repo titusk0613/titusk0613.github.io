@@ -1,0 +1,38 @@
+body{
+    background-image: url("https://hawksworthrestaurant.com/wp-content/uploads/2018/06/angolotti1.jpg");
+    background-repeat: no-repeat;
+}
+a:link,
+a:visited{
+    text-decoration: none;
+    color:rgb(51, 50, 50);
+}
+a:hover{
+    color: grey;
+}
+h1{
+    font-family: 'Times New Roman', Times, serif;
+    text-align: right;
+}
+p{
+    padding: 25px;
+    color: black;
+}
+img{
+    background-color:white;
+}
+h1{
+    font-size: 50px;
+}
+.transparent{
+    background-color:rgba(255, 255, 255, 0.651);
+}
+h2{
+    text-align: right;
+}
+
+
+
+
+
+
