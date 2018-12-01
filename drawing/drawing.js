@@ -60,5 +60,4 @@ function init() {
     ctx.fillRect(800,100,100,100);
     ctx.fillStyle = "black";
     ctx.fillRect(100,800,100,100);
-    drawRuler(10);
 }

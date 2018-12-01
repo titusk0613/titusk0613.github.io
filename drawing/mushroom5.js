@@ -49,6 +49,5 @@ function init() {
     ctx.fillRect(10*unit,4*unit,2*unit,2*unit);
     ctx.fillRect(12*unit,3*unit,1*unit,2*unit);
     
-    drawRuler(10); 
 }
  
