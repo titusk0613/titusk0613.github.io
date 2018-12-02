@@ -30,6 +30,10 @@ h1{
 h2{
     text-align: right;
 }
+nav{
+    display: flex;
+    justify-content: space-evenly;
+}
 
 
 
