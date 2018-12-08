@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
 body{
     background-image: url("https://hawksworthrestaurant.com/wp-content/uploads/2018/06/angolotti1.jpg");
     background-repeat: no-repeat;
@@ -11,8 +12,9 @@ a:hover{
     color: grey;
 }
 h1{
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Crimson+Text';
     text-align: right;
+    
 }
 p{
     padding: 25px;
@@ -33,6 +35,9 @@ h2{
 nav{
     display: flex;
     justify-content: space-evenly;
+}
+h2{
+    font-family: 'Crimson+Text';
 }
 
 
