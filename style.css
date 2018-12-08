@@ -36,9 +36,6 @@ h1 {
 img{
     text-align: center;
 }
-p{
-    color: #c5c6c7;
-}
 p {
     text-align: center;
 }
@@ -93,4 +90,10 @@ footer{
 #myCanvas{
     border-style: solid;
     background-color: white;
+}
+p{
+    color: #c5c6c7;
+}
+li{
+    color: #c5c6c7;
 }
