@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Background</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <header>
+        <h2>Background</h2>
+    </header>
+    <nav>
+        <a href="drawing.html">Back to Drawings</a>
+    </nav>
+    <section>
+        <canvas id="myCanvas" width="1000" height="1000"></canvas>
+    </section>
+    <footer>
+
+    </footer>
+    <script>
+        var canvas;
+        var ctx;
+        var UNIT = 10;
+        window.onload = init;
+        function init() {
+            canvas = document.getElementById("myCanvas");
+            ctx = canvas.getContext("2d")
+            drawBackround();
+            drawCharacters();
+
+            function drawBackround() {
+                ctx.fillStyle = "#718BF7";
+                ctx.fillRect(0, 0, 100 * UNIT, 100 * UNIT)
+            }
+
+            function drawCharacters() {
+                drawMario(40, 30, 1);
+                drawMushroom(10, 30, 1);
+                drawMushroom3(70, 30, 1);
+            }
+        }
+    </script>
+    <script src="drawBricks.js"></script>
+    <script src="ruler.js"></script>
+    <script src="drawMario.js"></script>
+    <script src="drawMushroom.js"></script>
+    <script src="drawMushroom3.js"></script>
+</body>
+
+</html>

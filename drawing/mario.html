@@ -1,23 +1,41 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Mario</title>
-        <link rel="stylesheet" href="../style.css">
-    </head>
-    <body>
-        <header>
-            <h2>Mario Sprite</h2>
-        </header>
-        <nav>
-            <a href="drawing.html">Back to Drawings</a>
-        </nav>
-        <section>
-            <canvas id="myCanvas" width="1000" height="1000"></canvas>
-        </section>
-        <footer>
-            
-        </footer>
-        <script src="drawMario.js"></script>
-        <script src="ruler.js"></script>
-    </body>
+
+<head>
+    <title>Mario</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <header>
+        <h2>Mario Sprite</h2>
+    </header>
+    <nav>
+        <a href="drawing.html">Back to Drawings</a>
+    </nav>
+    <section>
+        <canvas id="myCanvas" width="1000" height="1000"></canvas>
+    </section>
+    <footer>
+
+    </footer>
+    <script>
+        var canvas;
+        var ctx;
+        var UNIT = 10;
+
+        window.onload = init;
+
+        function init() {
+            canvas = document.getElementById("myCanvas");
+            ctx = canvas.getContext("2d");
+            drawMario();
+            drawRuler(10);
+        }
+
+    </script>
+    <script src="drawMario.js"></script>
+    <script src="ruler.js"></script>
+</body>
+
 </html>
