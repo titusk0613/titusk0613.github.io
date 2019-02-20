@@ -1,11 +1,11 @@
-function drawBricks(){
-    // For loop
-    for (var i = 0; i<5; i++){
-    // In the first loop, i equals 0.
-    //In the second loop, i equals 1.
-    // and so on...
-    ctx.save();
-    ctx.translate(i*width,0);
+function drawBricks(x,y,length) {
+        const GROUND_WIDTH = 16*UNIT;
+        for (var i = 0; i<length; i++){
+            ctx.save();
+            ctx.translate(x*UNIT,y*UNIT);
+            ctx.translate(i*GROUND_WIDTH,0);
+            drawBrick();
+            ctx.restore();
     }
 }
 function drawBrick(){

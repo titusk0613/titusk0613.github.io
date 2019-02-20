@@ -25,10 +25,20 @@
             function init(){
             canvas = document.getElementById("myCanvas");
             ctx = canvas.getContext("2d")
-            drawGrounds();
+            ctx.fillStyle = "#718BF7";
+                ctx.fillRect(0, 0, 100 * UNIT, 100 * UNIT)
+            drawGrounds(0,84,7);
+            drawMario(6,60,1.5);
+            drawMushroom3(35,75,0.6);
+            drawBricks(68,68,2);
+            drawBricks(84,52,1);
             }
         </script>
         <script src="drawGrounds.js"></script>
         <script src="ruler.js"></script>
+        <script src="drawMario.js"></script>
+        <script src="drawMushroom3.js"></script>
+        <script src="drawBricks.js"></script>
+
     </body>
 </html>
