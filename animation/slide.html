@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Slide</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <header>
+        <h2>Slide</h2>
+    </header>
+    <nav>
+        <a href="../index.html">Back to Home</a>
+    </nav>
+    <section>
+        <canvas id="myCanvas" width="1000" height="1000"></canvas>
+    </section>
+    <footer>
+
+    </footer>
+    <script>
+        var canvas;
+        var ctx;
+        var requestId;
+        var positionX = 0;
+        var isFacingRight = true;
+        const UNIT = 8;
+        window.onload = init;
+        function init() {
+            canvas = document.getElementById("myCanvas");
+            ctx = canvas.getContext("2d");
+            startAnimation();
+        }
+        function startAnimation() {
+            requestId = requestAnimationFrame(animationLoop);
+
+        }
+        function animationLoop(timeStamp) {
+            //First line inside animationLoop
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBackground();
+            changePositionX();
+            changeIsFacingRight();
+            animateMario();
+            requestId = requestAnimationFrame(animationLoop);
+        }
+
+        function animateMario() {
+            if(isFacingRight== true){
+                drawMario(positionX, 93);
+            }else if(isFacingRight==false){
+                    ctx.save();
+                    ctx.scale(-1,1)
+                    drawMario(-positionX,93);
+                    ctx.restore();
+
+
+                }
+            
+        }
+
+        function drawBackground() {
+            ctx.fillStyle = "#718BF7";
+            ctx.fillRect(0, 0, canvas.width, canvas.height)
+            drawBricks(0, 109, 8);
+
+        }
+        function changePositionX() {
+            if (isFacingRight== true){
+                positionX+=1  
+            } else if(isFacingRight== false){
+                  positionX-=1  
+                }
+        }
+        function changeIsFacingRight() {
+            if (positionX > canvas.width/UNIT+4*UNIT) {
+                isFacingRight = false;
+            } else if(positionX < -4*UNIT){
+                isFacingRight = true;
+            }
+        }
+    </script>
+    <script src="../drawing/drawMario.js"></script>
+    <script src="../drawing/drawBricks.js"></script>
+    <script src="../drawing/drawMario.js"></script>
+</body>
+
+</html>

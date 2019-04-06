@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Animation</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <header>
+        <h2>Animation</h2>
+    </header>
+    <nav>
+        <a href="../index.html">Back to Home</a>
+        <br>
+        <a href="slide.html">Slide</a>
+    </nav>
+    <section>
+        <canvas id="myCanvas" width="1000" height="1000"></canvas>
+    </section>
+    <footer>
+
+    </footer>
+    <script>
+        var canvas;
+        var ctx;
+        var requestId;
+        var positionX = 0.1;
+        const UNIT = 20;
+        window.onload = init;
+        function init() {
+            canvas = document.getElementById("myCanvas");
+            ctx = canvas.getContext("2d");
+            startAnimation();
+        }
+        function startAnimation() {
+            requestId = requestAnimationFrame(animationLoop);
+
+        }
+        function animationLoop(timeStamp) {
+            //First line inside animationLoop
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawMario(positionX, 0);
+            changePositionX();
+            // Last line inside animationLoop
+            requestId = requestAnimationFrame(animationLoop);
+
+        }
+        function changePositionX() {
+            positionX  +=1
+        }
+    </script>
+    <script src="../drawing/drawMario.js"></script>
+</body>
+
+</html>
