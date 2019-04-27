@@ -97,3 +97,13 @@ p{
 li{
     color: #c5c6c7;
 }
+section{
+    margin-left : 20%;
+    margin-right : 20%;
+    border-width: 3px;
+    border-color: #45A29E;
+    border-style: solid;
+    padding: 5%;
+    font-size: 20px;
+}
+

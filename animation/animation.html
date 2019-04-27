@@ -14,6 +14,9 @@
         <a href="../index.html">Back to Home</a>
         <br>
         <a href="slide.html">Slide</a>
+        <br>
+        <a href="jump.html">Jump</a>
+
     </nav>
     <section>
         <canvas id="myCanvas" width="1000" height="1000"></canvas>
@@ -32,22 +35,6 @@
             canvas = document.getElementById("myCanvas");
             ctx = canvas.getContext("2d");
             startAnimation();
-        }
-        function startAnimation() {
-            requestId = requestAnimationFrame(animationLoop);
-
-        }
-        function animationLoop(timeStamp) {
-            //First line inside animationLoop
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawMario(positionX, 0);
-            changePositionX();
-            // Last line inside animationLoop
-            requestId = requestAnimationFrame(animationLoop);
-
-        }
-        function changePositionX() {
-            positionX  +=1
         }
     </script>
     <script src="../drawing/drawMario.js"></script>

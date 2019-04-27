@@ -2,13 +2,13 @@
 <html>
 
 <head>
-    <title>Slide</title>
+    <title>Jump</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
     <header>
-        <h2>Slide</h2>
+        <h2>Jump</h2>
     </header>
     <nav>
         <a href="../index.html">Back to Home</a>
@@ -23,9 +23,13 @@
         var canvas;
         var ctx;
         var requestId;
-        var positionX = 0;
-        var isFacingRight = true;
+        var positionX = -7;
+        var positionY = 93;
+        var isJumping = false;
         const UNIT = 8;
+        const JUMP_LOCATION = 30;
+        const PEAK_LOCATION = 60;
+        const LAND_LOCATION = 90;
         window.onload = init;
         function init() {
             canvas = document.getElementById("myCanvas");
@@ -37,53 +41,53 @@
 
         }
         function animationLoop(timeStamp) {
-            //First line inside animationLoop
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawBackground();
-            changePositionX();
-            changeIsFacingRight();
             animateMario();
+            changePositionX();
+            changePositionY();
             requestId = requestAnimationFrame(animationLoop);
-        }
-
-        function animateMario() {
-            if (isFacingRight == true) {
-                drawMario(positionX, 93);
-            } else if (isFacingRight == false) {
-                ctx.save();
-                ctx.scale(-1, 1)
-                drawMario(-positionX, 93);
-                ctx.restore();
-
-
-            }
 
         }
-
         function drawBackground() {
             ctx.fillStyle = "#718BF7";
-            ctx.fillRect(0, 0, canvas.width, canvas.height)
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
             drawBricks(0, 109, 8);
-
+            drawRuler(10, 10);
         }
         function changePositionX() {
-            if (isFacingRight == true) {
-                positionX += 1
-            } else if (isFacingRight == false) {
-                positionX -= 1
+            if (positionX > canvas.width / UNIT) {
+                positionX = -7;
+            } else {
+                positionX += 1;
             }
         }
-        function changeIsFacingRight() {
-            if (positionX > canvas.width / UNIT + 4 * UNIT) {
-                isFacingRight = false;
-            } else if (positionX < -4 * UNIT) {
-                isFacingRight = true;
+        function changePositionY() {
+            if ((JUMP_LOCATION <= positionX) && (positionX < PEAK_LOCATION)) {
+                positionY /= 1.075;
+                isJumping = true;
             }
+            else if ((PEAK_LOCATION <= positionX) && (positionX < LAND_LOCATION)) {
+                positionY *= 1.075;
+                isJumping = true;
+            } else {
+                isJumping = false;
+            }
+
         }
+        function animateMario() {
+            if (isJumping == true) {
+                drawMario2(positionX, positionY);
+            }else{
+                drawMario1(positionX, positionY);
+            }
+
+        }
+
     </script>
     <script src="../drawing/drawMario.js"></script>
     <script src="../drawing/drawBricks.js"></script>
-    <script src="../drawing/drawMario.js"></script>
+    <script src="../drawing/ruler.js"></script>
 </body>
 
 </html>
