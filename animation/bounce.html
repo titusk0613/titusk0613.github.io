@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bounce</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <header>
+        <h2>Bounce</h2>
+    </header>
+    <nav>
+        <a href="../index.html">Back to Home</a>
+    </nav>
+    <section>
+        <canvas id="myCanvas" width="1000" height="750"></canvas>
+    </section>
+    <footer>
+
+    </footer>
+    <script>
+        var canvas;
+        var ctx;
+        var requestId;
+        var marioPosX = 0;
+        var marioPosY = 118;
+        var brickPosY = 65;
+        var isBrickActivated = false;
+        var isBrickGoingUp = true;
+        const ACCELERATION = 1.02;
+        const JUMP_LOCATION = 80;
+        const PEAK_LOCATION = 100;
+        const LAND_LOCATION = 120;
+        const UNIT = 5;
+        window.onload = init;
+        function init() {
+            canvas = document.getElementById("myCanvas");
+            ctx = canvas.getContext("2d");
+            startAnimation();
+        }
+        function startAnimation() {
+            requestId = requestAnimationFrame(animationLoop);
+        }
+        function animationLoop(timeStamp) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBackground();
+            drawMario1(marioPosX,marioPosY);
+            animateBrick();
+            changeMarioPosX();
+            changeMarioPosY();
+            drawRuler(10)
+            requestId = requestAnimationFrame(animationLoop);
+        }
+        function drawBackground(){
+            ctx.fillStyle ="#718BF7";
+            ctx.fillRect(0,0,canvas.width,canvas.height);
+            drawBricks(0,134,15);
+            drawGrounds(65,65,2);
+            drawGrounds(113,65,2);
+        }
+        function changeMarioPosX(){
+            if(-12 <= marioPosX && marioPosX < canvas.width/UNIT){
+                marioPosX +=1;
+            }else{
+                marioPosX = -12;
+            }
+        }
+        function changeMarioPosY(){
+            if(JUMP_LOCATION <= marioPosX && marioPosX < PEAK_LOCATION){
+                marioPosY /= ACCELERATION;
+            }else if(PEAK_LOCATION <= marioPosX && marioPosX < LAND_LOCATION){
+                marioPosY *=ACCELERATION;
+            }
+        }
+        function animateBrick(){
+            if(marioPosY <= 81){
+                isBrickActivated = true;
+            } else{
+                drawGrounds(97,brickPosY,1);
+            }
+            if(isBrickActivated==true){
+                if(brickPosY==57){
+                    isBrickGoingUp=false;
+                }
+                if(isBrickGoingUp==true){
+                    brickPosY -=1;
+                }else{
+                    brickPosY +=1;  
+                }
+            }
+
+        }
+    </script>
+    <script src="../drawing/drawMario.js"></script>
+    <script src="../drawing/drawBricks.js"></script>
+    <script src="../drawing/ruler.js"></script>
+    <script src="../drawing/drawGrounds.js"></script>
+</body>
+
+</html>

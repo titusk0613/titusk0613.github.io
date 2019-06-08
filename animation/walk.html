@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Walk</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <header>
+        <h2>Walk</h2>
+    </header>
+    <nav>
+        <a href="../index.html">Back to Home</a>
+    </nav>
+    <section>
+        <canvas id="myCanvas" width="1000" height="1000"></canvas>
+    </section>
+    <footer>
+
+    </footer>
+    <script>
+        var canvas;
+        var ctx;
+        var requestId;
+        var positionX = -12;
+        var time = 0;
+        const MAX_TIME = 20;
+        const SPEED = 1;
+        const UNIT = 10;
+        window.onload = init;
+        function init() {
+            canvas = document.getElementById("myCanvas");
+            ctx = canvas.getContext("2d");
+            startAnimation();
+            drawBackground();
+        }
+        function startAnimation() {
+            requestId = requestAnimationFrame(animationLoop);
+        }
+        function animationLoop(timeStamp) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBackground();
+            changePositionX();
+            changeTime();
+            animateMario();
+            requestId = requestAnimationFrame(animationLoop);
+        }
+        function drawBackground(){
+            ctx.fillStyle = "#718BF7";
+            ctx.fillRect(0,0,canvas.width, canvas.height);
+            drawBricks(0,84,7) 
+        }
+        function changePositionX(){
+            if (positionX>canvas.width/UNIT){
+                positionX = -12;
+            } else{
+                positionX +=SPEED;
+            }
+        }
+        function changeTime(){
+            if (time >= MAX_TIME){
+                time = 0;
+            } else{
+                time += 1;
+            }
+        }
+        function animateMario(){
+            if((0 <= time) && (time < MAX_TIME/2)){
+                drawMario2(positionX,68);
+            } else {
+                drawMario3(positionX,68);
+            }
+        }
+
+
+    </script>
+    <script src="../drawing/drawMario.js"></script>
+    <script src="../drawing/drawBricks.js"></script>
+</body>
+
+</html>

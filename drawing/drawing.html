@@ -1,45 +1,61 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Drawing</title>
-        <link rel="stylesheet" href="../style.css">
-    </head>
-    <body>
-        <header>
-            <h2>Drawing</h2>
-        </header>
-        <nav>
-            <a href="../index.html">Back to Homepage</a>
-            <br>
-            <a href="mushroom.html"> To Mushroom Sprite</a>
-            <br>
-            <a href="mushroom2.html">To Mushroom 2 Sprite</a>
-            <br>
-            <a href="mushroom3.html">To Mushroom 3 Sprite</a>
-            <br>
-            <a href="mushroom4.html">To Mushroom 4 Sprite</a>
-            <br>
-            <a href="mushroom5.html">To Mushroom 5 Sprite</a>
-            <br>
-            <a href="mario.html">Mario</a>
-            <br>
-            <a href="scale.html">Scale</a>
-            <br>
-            <a href="bricks.html">Bricks</a>
-            <br>
-            <a href="background.html">Background</a>
-            <br>
-            <a href="ground.html">Ground</a>
-            <br>
-            <a href="../animation.html">Animation</a>
-        </nav>
-        <section>
-            <canvas id="myCanvas" width="1000" height="1000"></canvas>
-        </section>
-        <footer>
-            
-        </footer>
-        <script src="drawing.js"></script>
-        <script src="ruler.js"></script>
-    </body>
+
+<head>
+    <title>Drawing</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <header>
+        <h2>Drawing</h2>
+    </header>
+    <nav>
+        <a href="../index.html">Back to Homepage</a>
+        <br>
+        <a href="mushroom.html"> To Mushroom Sprite</a>
+        <br>
+        <a href="mushroom2.html">To Mushroom 2 Sprite</a>
+        <br>
+        <a href="mushroom3.html">To Mushroom 3 Sprite</a>
+        <br>
+        <a href="mushroom4.html">To Mushroom 4 Sprite</a>
+        <br>
+        <a href="mushroom5.html">To Mushroom 5 Sprite</a>
+        <br>
+        <a href="mario.html">Mario</a>
+        <br>
+        <a href="scale.html">Scale</a>
+        <br>
+        <a href="bricks.html">Bricks</a>
+        <br>
+        <a href="background.html">Background</a>
+        <br>
+        <a href="ground.html">Ground</a>
+        <br>
+        <a href="../animation/animation.html">Animation</a>
+    </nav>
+    <section>
+        <canvas id="myCanvas" width="1000" height="1000"></canvas>
+    </section>
+    <footer>
+
+
+    </footer>
+    <script>
+        var canvas;
+        var ctx;
+        var UNIT = 10;
+        window.onload = init;
+        function init() {
+            canvas = document.getElementById("myCanvas");
+            ctx = canvas.getContext("2d")
+            drawGoomba(0,0,3);
+        }
+    </script>
+    <script src="drawMario.js"></script>
+    <script src="drawGoomba.js"></script>
+
+</body>
+
 </html>

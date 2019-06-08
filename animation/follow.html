@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Follow</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <header>
+        <h2>Follow</h2>
+    </header>
+    <nav>
+        <a href="../index.html">Back to Home</a>
+    </nav>
+    <section>
+        <canvas id="myCanvas" width="1000" height="1000"></canvas>
+    </section>
+    <footer>
+
+    </footer>
+    <script>
+        var canvas;
+        var ctx;
+        var requestId;
+        var positionXMario = 0;
+        var positionXGoomba = -35;
+        var time = 0;
+        const MAX_TIME = 30;
+        const UNIT = 4;
+        window.onload = init;
+        function init() {
+            canvas = document.getElementById("myCanvas");
+            ctx = canvas.getContext("2d");
+            startAnimation();
+        }
+        function startAnimation() {
+            requestId = requestAnimationFrame(animationLoop);
+        }
+        function animationLoop(timeStamp) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBackground();
+            changePositionX();
+            animateMario();
+            animateGoomba();
+            changeTime();
+            drawRuler(5);
+            requestId = requestAnimationFrame(animationLoop);
+        }
+        function drawBackground(){
+            ctx.fillStyle = "#718BF7";
+            ctx.fillRect(0,0,canvas.width, canvas.height);
+            drawBricks(0,234,16) 
+}
+        function changePositionX(){
+            if(positionXMario>canvas.width/UNIT){
+                positionXMario=-15;
+            }else{
+                positionXMario +=1;
+            }
+            if (positionXGoomba>canvas.width/UNIT){
+                positionXGoomba=-15;
+            }else{
+                positionXGoomba +=1;
+            }
+        }
+        function changeTime(){
+            if(time > MAX_TIME){
+                time=0;
+            }else{
+                time +=1;
+            }
+        }
+        function animateMario(){
+            if(0 <= time && time < MAX_TIME/2){
+                drawMario(positionXMario,218,2);
+            }else{
+                drawMario(positionXMario,218,3);
+            }
+        }
+        function animateGoomba(){
+            if(0<=time && time < MAX_TIME/2){
+                drawGoomba(positionXGoomba,218,1);
+        }else{
+            drawGoomba(positionXGoomba,218,2);
+        }
+    }
+    </script>
+    <script src="../drawing/drawMario.js"></script>
+    <script src="../drawing/drawBricks.js"></script>
+    <script src="../drawing/ruler.js"></script>
+    <script src="../drawing/drawGoomba.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Squish</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <header>
+        <h2>Squish</h2>
+    </header>
+    <nav>
+        <a href="../index.html">Back to Home</a>
+    </nav>
+    <section>
+        <canvas id="myCanvas" width="1000" height="1000"></canvas>
+    </section>
+    <footer>
+
+    </footer>
+    <script>
+        var canvas;
+        var ctx;
+        var requestId;
+        var positionXMario = -7;
+        var positionXGoomba = 200;
+        var positionY = 218;
+        var time = 0;
+        var isJumping = false;
+        var isGoombaSquished = false;
+        // put the goomba on right side by going goomba pos x = 50 and then finish squished goomba complete the squish
+        const MAX_TIME = 30;
+        const UNIT = 4;
+        const JUMP_LOCATION = 23;
+        const PEAK_LOCATION = 73;
+        const LAND_LOCATION = 123;
+        window.onload = init;
+        function init() {
+            canvas = document.getElementById("myCanvas");
+            ctx = canvas.getContext("2d");
+            startAnimation();
+        }
+        function startAnimation() {
+            requestId = requestAnimationFrame(animationLoop);
+
+        }
+        function animationLoop(timeStamp) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBackground();
+            animateMario();
+            animateGoomba();
+            changeIsGoombaSquished();
+            changePositionX();
+            changePositionY();
+            changeTime();
+            drawRuler(20);
+            requestId = requestAnimationFrame(animationLoop);
+
+        }
+        function drawBackground() {
+            ctx.fillStyle = "#718BF7";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            drawBricks(0, 234, 16);
+        }
+        function changePositionX() {
+            if (positionXMario > canvas.width / UNIT) {
+                positionXMario = -7;
+                isGoombaSquished = false;
+                positionXGoomba = 200;
+            } else {
+                positionXMario += 1;
+            }
+            positionXGoomba -= 0.48;
+        }
+        function changePositionY() {
+            if (JUMP_LOCATION <= positionXMario && positionXMario < PEAK_LOCATION) {
+                positionY /= 1.05;
+                ifJumping = true;
+            } else if (PEAK_LOCATION <= positionXMario && positionXMario < LAND_LOCATION) {
+                positionY *= 1.05
+                isJumping = true;
+            } else {
+                isJumping = false;
+            }
+        }
+        function animateMario() {
+            if (isJumping == true) {
+                drawMario(positionXMario, positionY, 2);
+            } else {
+                if (0 <= time && time < MAX_TIME / 2) {
+                    drawMario(positionXMario, positionY, 3);
+                } else if (MAX_TIME / 2 <= time && time <= MAX_TIME) {
+                    drawMario(positionXMario, positionY, 2);
+                }
+            }
+        }
+        function changeIsGoombaSquished() {
+            if (positionXGoomba <= 140) {
+                isGoombaSquished = true;
+            } else {
+                isGoombaSquished = false;
+            }
+        }
+        function animateGoomba() {
+            if (isGoombaSquished == true) {
+                drawGoomba(122, 218, 3);
+            } else {
+                if ((0 <= time) && (time < MAX_TIME / 2)) {
+                    drawGoomba(positionXGoomba, 218, 1);
+                } else {
+                    drawGoomba(positionXGoomba, 218, 2);
+                }
+            }
+
+            // if(positionXGoomba <=LAND_LOCATION){
+            //     positionXGoomba = 200;
+            // }
+            // if (positionXGoomba <= 131) {
+            //     drawGoomba(positionXGoomba, 218, 3)
+            // }
+        }
+
+        function changeTime() {
+            if (time < MAX_TIME) {
+                time += 1;
+            } else {
+                time = 0;
+            }
+        }
+    </script>
+    <script src="../drawing/drawMario.js"></script>
+    <script src="../drawing/drawBricks.js"></script>
+    <script src="../drawing/drawGoomba.js"></script>
+    <script src="../drawing/ruler.js"></script>
+</body>
+
+</html>

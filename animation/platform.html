@@ -2,13 +2,13 @@
 <html>
 
 <head>
-    <title>Jump</title>
+    <title>Platform</title>
     <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
     <header>
-        <h2>Jump</h2>
+        <h2>Platform</h2>
     </header>
     <nav>
         <a href="../index.html">Back to Home</a>
@@ -23,15 +23,19 @@
         var canvas;
         var ctx;
         var requestId;
-        var positionX = -7;
-        var positionY = 93;
+        var positionX = -1;
+        var positionY = 168;
         var isJumping = false;
         var time = 0;
         const MAX_TIME = 30;
-        const UNIT = 8;
-        const JUMP_LOCATION = 30;
-        const PEAK_LOCATION = 60;
-        const LAND_LOCATION = 90;
+        const ACCELERATION = 1.04;
+        const JUMP_LOCATION1 = 30;
+        const PEAK_LOCATION1 = 55;
+        const LAND_LOCATION1 = 70;
+        const JUMP_LOCATION2 = 115;
+        const PEAK_LOCATION2 = 140;
+        const LAND_LOCATION2 = 177;
+        const UNIT = 5;
         window.onload = init;
         function init() {
             canvas = document.getElementById("myCanvas");
@@ -45,37 +49,49 @@
         function animationLoop(timeStamp) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawBackground();
-            animateMario();
             changePositionX();
             changePositionY();
             changeTime();
+            animateMario();
             requestId = requestAnimationFrame(animationLoop);
 
         }
         function drawBackground() {
             ctx.fillStyle = "#718BF7";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            drawBricks(0, 109, 8);
+            drawBricks(0, 184, 13);
+            drawGrounds(70, 121, 3);
         }
         function changePositionX() {
-            if (positionX > canvas.width / UNIT) {
-                positionX = -7;
-            } else {
+            if (positionX <= canvas.width / UNIT) {
                 positionX += 1;
+            } else {
+                positionX = -12;
             }
         }
         function changePositionY() {
-            if ((JUMP_LOCATION <= positionX) && (positionX < PEAK_LOCATION)) {
-                positionY /= 1.075;
+            if ((JUMP_LOCATION1 <= positionX) && (positionX <= PEAK_LOCATION1)) {
+                positionY /= ACCELERATION;
                 isJumping = true;
-            }
-            else if ((PEAK_LOCATION <= positionX) && (positionX < LAND_LOCATION)) {
-                positionY *= 1.075;
+            } else if (PEAK_LOCATION1 <= positionX && positionX < LAND_LOCATION1) {
+                positionY *= ACCELERATION;
                 isJumping = true;
-            } else {
+            } else if (JUMP_LOCATION2 <= positionX && positionX < PEAK_LOCATION2) {
+                positionY /= ACCELERATION;
+                isJumping = true;
+            } else if (PEAK_LOCATION2 <= positionX && positionX < LAND_LOCATION2) {
+                positionY *= ACCELERATION;
+                isJumping = true;
+            }else{
                 isJumping = false;
             }
-
+        }
+        function changeTime() {
+            if (0 <= time && time < MAX_TIME) {
+                time += 1;
+            } else {
+                time = 0;
+            }
         }
         function animateMario() {
             if (isJumping == true) {
@@ -86,16 +102,10 @@
                 drawMario2(positionX, positionY);
             }
         }
-        function changeTime() {
-            if (time < MAX_TIME) {
-                time += 1;
-            } else {
-                time = 0;
-            }
-        }
     </script>
     <script src="../drawing/drawMario.js"></script>
     <script src="../drawing/drawBricks.js"></script>
+    <script src="../drawing/drawGrounds.js"></script>
     <script src="../drawing/ruler.js"></script>
 </body>
 
