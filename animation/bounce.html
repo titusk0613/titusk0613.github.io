@@ -80,14 +80,18 @@
                 drawGrounds(97,brickPosY,1);
             }
             if(isBrickActivated==true){
-                if(brickPosY==57){
-                    isBrickGoingUp=false;
-                }
                 if(isBrickGoingUp==true){
                     brickPosY -=1;
                 }else{
                     brickPosY +=1;  
                 }
+                if(brickPosY==57){
+                    isBrickGoingUp=false;
+                } else if (brickPosY == 65) {
+                    isBrickActivated = false;
+                    isBrickGoingUp = true;
+                }
+                
             }
 
         }
