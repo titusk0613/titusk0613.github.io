@@ -26,8 +26,11 @@
         var marioPosX = 0;
         var marioPosY = 118;
         var brickPosY = 65;
+        var isJumping = false;
+        var time = 0;
         var isBrickActivated = false;
         var isBrickGoingUp = true;
+        const MAX_TIME = 30;
         const ACCELERATION = 1.02;
         const JUMP_LOCATION = 80;
         const PEAK_LOCATION = 100;
@@ -45,55 +48,77 @@
         function animationLoop(timeStamp) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             drawBackground();
-            drawMario1(marioPosX,marioPosY);
+            drawMario1(marioPosX, marioPosY);
             animateBrick();
             changeMarioPosX();
             changeMarioPosY();
-            drawRuler(10)
+            animateMario();
+            changeTime();
             requestId = requestAnimationFrame(animationLoop);
         }
-        function drawBackground(){
-            ctx.fillStyle ="#718BF7";
-            ctx.fillRect(0,0,canvas.width,canvas.height);
-            drawBricks(0,134,15);
-            drawGrounds(65,65,2);
-            drawGrounds(113,65,2);
+        function drawBackground() {
+            ctx.fillStyle = "#718BF7";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            drawBricks(0, 134, 15);
+            drawGrounds(65, 65, 2);
+            drawGrounds(113, 65, 2);
         }
-        function changeMarioPosX(){
-            if(-12 <= marioPosX && marioPosX < canvas.width/UNIT){
-                marioPosX +=1;
-            }else{
+        function changeMarioPosX() {
+            if (-12 <= marioPosX && marioPosX < canvas.width / UNIT) {
+                marioPosX += 1;
+            } else {
                 marioPosX = -12;
             }
         }
-        function changeMarioPosY(){
-            if(JUMP_LOCATION <= marioPosX && marioPosX < PEAK_LOCATION){
+        function changeMarioPosY() {
+            if (JUMP_LOCATION <= marioPosX && marioPosX < PEAK_LOCATION) {
                 marioPosY /= ACCELERATION;
-            }else if(PEAK_LOCATION <= marioPosX && marioPosX < LAND_LOCATION){
-                marioPosY *=ACCELERATION;
-            }
+                isJumping = true;
+            } else if (PEAK_LOCATION <= marioPosX && marioPosX < LAND_LOCATION) {
+                marioPosY *= ACCELERATION;
+                isJumping = true;
+            } else
+                isJumping = false;
         }
-        function animateBrick(){
-            if(marioPosY <= 81){
+        function animateBrick() {
+            if (marioPosY <= 81) {
                 isBrickActivated = true;
-            } else{
-                drawGrounds(97,brickPosY,1);
+            } else {
+                drawGrounds(97, brickPosY, 1);
             }
-            if(isBrickActivated==true){
-                if(isBrickGoingUp==true){
-                    brickPosY -=1;
-                }else{
-                    brickPosY +=1;  
+            if (isBrickActivated == true) {
+                if (isBrickGoingUp == true) {
+                    brickPosY -= 1;
+                } else {
+                    brickPosY += 1;
                 }
-                if(brickPosY==57){
-                    isBrickGoingUp=false;
+                if (brickPosY == 57) {
+                    isBrickGoingUp = false;
                 } else if (brickPosY == 65) {
                     isBrickActivated = false;
                     isBrickGoingUp = true;
                 }
-                
+
             }
 
+        }
+        function animateMario() {
+            if (isJumping == true) {
+                drawMario(marioPosX, positionY, 2);
+            } else {
+                if (0 <= time && time < MAX_TIME / 2) {
+                    drawMario(marioPosX, positionY, 3);
+                } else if (MAX_TIME / 2 <= time && time <= MAX_TIME) {
+                    drawMario(marioPosX, positionY, 2);
+                }
+            }
+        }
+        function changeTime() {
+            if (time < MAX_TIME) {
+                time += 1;
+            } else {
+                time = 0;
+            }
         }
     </script>
     <script src="../drawing/drawMario.js"></script>

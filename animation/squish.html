@@ -54,7 +54,6 @@
             changePositionX();
             changePositionY();
             changeTime();
-            drawRuler(20);
             requestId = requestAnimationFrame(animationLoop);
 
         }
@@ -62,27 +61,6 @@
             ctx.fillStyle = "#718BF7";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             drawBricks(0, 234, 16);
-        }
-        function changePositionX() {
-            if (positionXMario > canvas.width / UNIT) {
-                positionXMario = -7;
-                isGoombaSquished = false;
-                positionXGoomba = 200;
-            } else {
-                positionXMario += 1;
-            }
-            positionXGoomba -= 0.48;
-        }
-        function changePositionY() {
-            if (JUMP_LOCATION <= positionXMario && positionXMario < PEAK_LOCATION) {
-                positionY /= 1.05;
-                ifJumping = true;
-            } else if (PEAK_LOCATION <= positionXMario && positionXMario < LAND_LOCATION) {
-                positionY *= 1.05
-                isJumping = true;
-            } else {
-                isJumping = false;
-            }
         }
         function animateMario() {
             if (isJumping == true) {
@@ -95,13 +73,6 @@
                 }
             }
         }
-        function changeIsGoombaSquished() {
-            if (positionXGoomba <= 140) {
-                isGoombaSquished = true;
-            } else {
-                isGoombaSquished = false;
-            }
-        }
         function animateGoomba() {
             if (isGoombaSquished == true) {
                 drawGoomba(122, 218, 3);
@@ -112,13 +83,43 @@
                     drawGoomba(positionXGoomba, 218, 2);
                 }
             }
+            function changePositionX() {
+                if (positionXMario > canvas.width / UNIT) {
+                    positionXMario = -7;
+                    isGoombaSquished = false;
+                    positionXGoomba = 200;
+                } else {
+                    positionXMario += 1;
+                }
+                positionXGoomba -= 0.48;
+            }
+            function changePositionY() {
+                if (JUMP_LOCATION <= positionXMario && positionXMario < PEAK_LOCATION) {
+                    positionY /= 1.05;
+                    ifJumping = true;
+                } else if (PEAK_LOCATION <= positionXMario && positionXMario < LAND_LOCATION) {
+                    positionY *= 1.05
+                    isJumping = true;
+                } else {
+                    isJumping = false;
+                }
+            }
 
-            // if(positionXGoomba <=LAND_LOCATION){
-            //     positionXGoomba = 200;
-            // }
-            // if (positionXGoomba <= 131) {
-            //     drawGoomba(positionXGoomba, 218, 3)
-            // }
+            function changeIsGoombaSquished() {
+                if (positionXGoomba <= 140) {
+                    isGoombaSquished = true;
+                } else {
+                    isGoombaSquished = false;
+                }
+            }
+
+
+            if (positionXGoomba <= LAND_LOCATION) {
+                positionXGoomba = 200;
+            }
+            if (positionXGoomba <= 131) {
+                drawGoomba(positionXGoomba, 218, 3)
+            }
         }
 
         function changeTime() {
