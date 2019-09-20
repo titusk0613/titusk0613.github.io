@@ -1,5 +1,4 @@
-h3 {
-    text-align: center;
+@font-face { font-family: fontage; src:url("https://fonts.googleapis.com/css?family=Inconsolata&display=swap"); 
 }
 p{
     font-weight: bold;
@@ -8,11 +7,11 @@ h1{
     font-family: Impact;
 }
 h3{
-    font-family: monospace;
+    font-family: Impact;
 }
 
 body{ 
-    background-color: #0B0C10;
+    background-color: #609E99;
     /* color:red; */
 }
 h3{
@@ -22,7 +21,7 @@ h3{
     font-size: 55px;
 }
 h1{
-    color: #66FCF1;
+    color: rgb(232, 191, 255);
 }
 h1{
     font-size: 300px
@@ -45,11 +44,16 @@ a{
 nav{
     text-align: center;
 }
+.design{
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 20px;
+}
 
 a:link,
 a:visited{
     text-decoration: none;
-    color:#45A29E;
+    color:#D1E769;
 }
 a:hover{
     color: #c5c6c7;
@@ -58,7 +62,7 @@ h2{
     text-align: center;
 }
 h2{
-    color: #66FCF1;
+    color: #D1E769;
 }
 header{
     font-size: 45px;
@@ -67,7 +71,7 @@ header{
     font-size: 45px;
 }
 h6{
-    color: #45A29E;
+    color: #D1E769;
 }
 h6{
     font-size: 25px;
@@ -79,26 +83,26 @@ footer{
     border-style: inset;
 }
 footer{
-    border-width: 10px;
-    border-color: #45A29E;
+    border-width: 8px;
+    border-color: #D1E769;
     padding-bottom: 1px;
-    margin-top: 75px;
+    margin-top: 975px;
 }
 #myCanvas{
     border-style: solid;
     background-color: white;
 }
 p{
-    color: #c5c6c7;
+    color: #df9aff9c;
 }
 li{
-    color: #c5c6c7;
+    color: #D1E769;
 }
 section{
     margin-left : 20%;
     margin-right : 20%;
     border-width: 3px;
-    border-color: #45A29E;
+    border-color: rgb(132, 108, 141);
     border-style: solid;
     padding: 5%;
     font-size: 20px;
@@ -106,4 +110,28 @@ section{
 
 .text-center {
     text-align : center;
+}
+nav{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+}
+.name{
+    font-family: 'Quicksand', sans-serif;
+    font-size: 50px;
+    margin-top: -15px
+}
+.flex{
+    font-size:35px;
+}
+.name{
+    color: white;
+}
+nav{
+    color: black;
+}
+.text-center{
+    color:white;
+}
+img{
+    text-align: center;
 }
