@@ -11,7 +11,7 @@ h3{
 }
 
 body{ 
-    background-color: #609E99;
+    background-color: rgb(247, 227, 171) ;
     /* color:red; */
 }
 h3{
@@ -53,7 +53,7 @@ nav{
 a:link,
 a:visited{
     text-decoration: none;
-    color:#D1E769;
+    color:rgb(178, 212, 9);
 }
 a:hover{
     color: #c5c6c7;
@@ -62,7 +62,7 @@ h2{
     text-align: center;
 }
 h2{
-    color: #D1E769;
+    color: rgb(150, 192, 34);
 }
 header{
     font-size: 45px;
@@ -71,7 +71,7 @@ header{
     font-size: 45px;
 }
 h6{
-    color: #D1E769;
+    color: rgb(166, 182, 84);
 }
 h6{
     font-size: 25px;
@@ -84,7 +84,7 @@ footer{
 }
 footer{
     border-width: 8px;
-    border-color: #D1E769;
+    border-color: rgb(85, 189, 189);
     padding-bottom: 1px;
     margin-top: 975px;
 }
@@ -96,7 +96,7 @@ p{
     color: #df9aff9c;
 }
 li{
-    color: #D1E769;
+    color: rgb(158, 173, 78);
 }
 section{
     margin-left : 20%;
